@@ -1,0 +1,61 @@
+POST http://localhost:5000/api/auth/register
+Content-Type: application/json
+
+{
+    "username": "mcngan",
+    "password": "mcngan"
+}
+
+###
+
+POST http://localhost:5000/api/auth/login
+Content-Type: application/json
+
+{
+    "username": "mcngan",
+    "password": "mcngan"
+}
+
+###
+POST http://localhost:5000/api/posts
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MmQzY2Q5YTFhZDM5ZDJlMThlNjI5YWYiLCJpYXQiOjE2NTg0OTc3ODR9.UTtCzA97fVdOIujmGMGEI4lsiinIO_rt5-vz8N_UFeQ
+
+{
+    "description": "hocj reactjs 3",
+    "url": "google.com 3",
+    "status": "LEARNING",
+    "title": "my first post 3"
+}
+
+###
+
+
+POST http://localhost:5000/api/auth/login
+Content-Type: application/json
+
+{
+    "username": "mcgray",
+    "password": "mcgray"
+}
+
+###
+GET http://localhost:5000/api/posts
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MmQzY2Q5YTFhZDM5ZDJlMThlNjI5YWYiLCJpYXQiOjE2NTgyMDMyNTR9.FJFmhdCOi0zPGq4oS6krwjG226HFcx9VFcFEDhptmlc
+
+###
+PUT http://localhost:5000/api/posts/62d437513aadfe5b60751bec
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MmQzY2Q5YTFhZDM5ZDJlMThlNjI5YWYiLCJpYXQiOjE2NTgyMDMyNTR9.FJFmhdCOi0zPGq4oS6krwjG226HFcx9VFcFEDhptmlc
+
+{
+    "title": "my first post updated",
+    "description": "co len nha",
+    "url": "view.org",
+    "status": "LEARNED"
+}
+
+###
+DELETE http://localhost:5000/api/posts/62d43e937314b22cc5b031d6
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MmQzY2Q5YTFhZDM5ZDJlMThlNjI5YWYiLCJpYXQiOjE2NTgyMDMyNTR9.FJFmhdCOi0zPGq4oS6krwjG226HFcx9VFcFEDhptmlc
+
