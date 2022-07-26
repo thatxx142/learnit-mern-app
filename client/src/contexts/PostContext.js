@@ -73,7 +73,6 @@ const PostContextProvider = ({children}) => {
             const response = await axios.put(`${apiUrl}/posts/${updatedPost._id}`, updatedPost)
             if (response.data.success) {
                 dispatch({type: UPDATE_POST, payload: response.data.updatedPost})
-                console.log(response.data)
                 return response.data
             }
         } catch (error) {

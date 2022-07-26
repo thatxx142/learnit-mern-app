@@ -9,6 +9,7 @@ const verifyToker = require('../middleware/auth')
 //@route POST api/auth/register
 //@desc Register user
 //@access Public
+
 router.get('/', verifyToker, async(req, res) => {
     try {
         const user = await User.findById(req.userId).select('-password')

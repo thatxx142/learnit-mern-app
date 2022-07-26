@@ -7,6 +7,7 @@ const verifyToker = require('../middleware/auth')
 //@route GET api/posts
 //@desc get post
 //@access Private
+
 router.get('/', verifyToker, async(req, res) => {
     try {
         const posts = await Post.find({user: req.userId}).populate('user', ['username'])
