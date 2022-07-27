@@ -31,13 +31,11 @@ const app = express()
 
 app.use(express.json())
 
-var corsOption = {
-    origin: 'http://localhost:3000'
-}
+app.use(cors())
 
 
-app.use('/api/auth',cors(corsOption), authRouter)
-app.use('/api/posts',cors(corsOption), postRouter)
+app.use('/api/auth', authRouter)
+app.use('/api/posts', postRouter)
 
 const PORT = process.env.PORT || 5000
 

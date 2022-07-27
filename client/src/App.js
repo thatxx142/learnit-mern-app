@@ -37,7 +37,7 @@ function App() {
                   </ProtectedRoute>
                 }
               />
-              <Route 
+              {/* <Route 
                 path="/about"
                 element ={
                   <ProtectedRoute>
@@ -45,7 +45,7 @@ function App() {
                     <About />
                   </ProtectedRoute>
                 }
-              />
+              /> */}
 
           </Routes>
         </BrowserRouter>

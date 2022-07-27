@@ -32,9 +32,9 @@ const UpdatePostModal = () => {
 
     const onSubmit = async event => {
         event.preventDefault()
-        const {success, message} = await updatePost(updatedPost)
+        const {success} = await updatePost(updatedPost)
         setShowUpdatePostModal(false)
-        setShowToast({ show: true, message, type: success ? 'success' : 'danger'})
+        setShowToast({ show: true, message: 'Updated successfully', type: success ? 'success' : 'danger'})
     }
 
     // const resetAddPostData = () => {

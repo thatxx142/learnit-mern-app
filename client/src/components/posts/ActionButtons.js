@@ -6,11 +6,15 @@ import { PostContext } from '../../contexts/PostContext'
 import { useContext } from 'react'
 
 const ActionButtons = ({ url, _id}) => {
-    const {deletePost, findPost, setShowUpdatePostModal} = useContext(PostContext)
+    const { findPost, setShowUpdatePostModal, setShowConfirmDeleteModal} = useContext(PostContext)
 
     const choosePost = postId => {
         findPost(postId)
         setShowUpdatePostModal(true)
+    }
+
+    const choosePostToDelete = postId => {
+        setShowConfirmDeleteModal(true)
     }
     return (
         <>
@@ -20,7 +24,7 @@ const ActionButtons = ({ url, _id}) => {
             <Button className='post-button' onClick={choosePost.bind(this, _id)} >
                 <img src={editIcon} alt="edit" width='24' height='24'></img>
             </Button>
-            <Button className='post-button' onClick={deletePost.bind(this, _id)}>
+            <Button className='post-button' id="delete-btn" data-id={_id} onClick={choosePostToDelete.bind(this, _id)}>
                 <img src={deleteIcon} alt="delete" width='24' height='24'></img>
             </Button>
         </>

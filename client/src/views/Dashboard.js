@@ -11,6 +11,7 @@ import Col from "react-bootstrap/Col"
 import OverlayTrigger from "react-bootstrap/OverlayTrigger"
 import Tooltip from "react-bootstrap/Tooltip"
 import Toast from "react-bootstrap/Toast"
+import Modal from 'react-bootstrap/Modal'
 
 import AddPostModal from "../components/posts/AddPostModal"
 import UpdatePostModal from "../components/posts/UpdatePostModal"
@@ -25,7 +26,10 @@ const Dashboard = () => {
         getPosts,
         setShowAddPostModal,
         showToast: {show, message, type},
-        setShowToast
+        setShowToast,
+        showConfirmDeleteModal, 
+        setShowConfirmDeleteModal,
+        deletePost
     } = useContext(PostContext)
 
     // Start: Get all posts
@@ -33,7 +37,20 @@ const Dashboard = () => {
         const loadPostsWrapper = () => getPosts()
         loadPostsWrapper()
     } , [])
+
+    //Close confirm delete modal
+        const handleClose = () => {
+        setShowConfirmDeleteModal(false)
+    }
     
+    // Confirm to delete
+    const handleDelete = () => {
+        const deleteBtn = document.getElementById("delete-btn")
+        const deleteBtnId = deleteBtn.getAttribute('data-id')
+        deletePost(deleteBtnId)
+        setShowConfirmDeleteModal(false)
+    }
+   
     let body = null
 
     if (postsLoading) {
@@ -87,6 +104,7 @@ const Dashboard = () => {
         )
     }
 
+  
     return (
         <>
             {body}
@@ -96,7 +114,7 @@ const Dashboard = () => {
             {/* After post is added, show toast */}
             <Toast 
                 show={show} 
-                style={{position: 'fixed', top: '20%', right: '10px'}}
+                style={{position: 'fixed', top: '20%', right: '10px', width: "200px"}}
                 className={`bg-${type} text-white`}
                 onClose={setShowToast.bind(this, {
                     show: false,
@@ -106,10 +124,26 @@ const Dashboard = () => {
                 delay={3000}
                 autohide
             >
-                <Toast.Body>
+                <Toast.Body style={{textAlign: "center"}}>
                     <strong>{message}</strong>
                 </Toast.Body>
             </Toast>
+
+            {/* Confirm delete post modal */}
+            <Modal id="confirm" show={showConfirmDeleteModal} onHide={handleClose} >
+                <Modal.Header closeButton>
+                <Modal.Title>Delete this task</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>Are you sure you want to delete ?</Modal.Body>
+                <Modal.Footer>
+                <Button variant="primary"  onClick={handleDelete} >
+                    Delete
+                </Button>
+                <Button variant="secondary" onClick={handleClose} >
+                    Cancel
+                </Button>
+                </Modal.Footer>
+            </Modal>
         </>
     )
 }

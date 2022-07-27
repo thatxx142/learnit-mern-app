@@ -22,13 +22,6 @@ const NavbarMenu = () => {
     <Navbar expand='lg' bg='primary' variant='dark' className='shadow'>
         <Container>
             <Navbar.Brand className='font-weight-bolder text-white'>
-                <img 
-                    src={learnItLogo} 
-                    alt='learnItLogo' 
-                    width='32' 
-                    height='32' 
-                    className='mr-2' 
-                />
                 LearnIt
             </Navbar.Brand>
 
@@ -42,18 +35,18 @@ const NavbarMenu = () => {
                     >
                         Dashboard
                     </Nav.Link>
-                    <Nav.Link 
+                    {/* <Nav.Link 
                         className='font-weight-bolder text-white' 
                         to='/about' 
                         as={Link}
                     >
                         About
-                    </Nav.Link>
+                    </Nav.Link> */}
                 </Nav>
 
                 <Nav >
                     <Nav.Link 
-                        className='font-weight-bolder text-white ' 
+                        className='font-weight-bolder text-white mt-1 ' 
                         disabled
                     >
                         Welcome {username}
