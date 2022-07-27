@@ -39,4 +39,4 @@ app.use('/api/posts', postRouter)
 
 
 
-app.listen(process.env.PORT || 8000, '0.0.0.0',  () => () => console.log(`server started on port ${PORT}`))
+app.listen(process.env.PORT || 8000, '0.0.0.0',   () => console.log(`server started on port ${PORT}`))
