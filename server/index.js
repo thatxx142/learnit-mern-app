@@ -1,5 +1,6 @@
 require('dotenv').config()
 const express = require('express')
+const morgan = require('morgan')
 const mongoose = require('mongoose')
 const cors = require('cors')
 
@@ -31,12 +32,14 @@ const app = express()
 
 app.use(express.json())
 
+app.use(morgan('combined'))
+
 app.use(cors())
 
 
 app.use('/api/auth', authRouter)
 app.use('/api/posts', postRouter)
 
+const PORT = process.env.PORT 
 
-
-app.listen(process.env.PORT || 8000, '0.0.0.0',  () => () => console.log(`server started on port ${PORT}`))
+app.listen(PORT, () => console.log(`server started on port ${PORT}`))

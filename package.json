@@ -1,5 +1,8 @@
 {
   "dependencies": {
     "heroku": "^7.60.2"
+  },
+  "devDependencies": {
+    "morgan": "^1.10.0"
   }
 }
