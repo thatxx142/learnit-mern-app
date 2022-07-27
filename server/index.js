@@ -34,7 +34,9 @@ app.use(express.json())
 
 app.use(morgan('combined'))
 
-app.use(cors())
+app.use(cors({
+    origin: "*"
+}))
 
 
 app.use('/api/auth', authRouter)
