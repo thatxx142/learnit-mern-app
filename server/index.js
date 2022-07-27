@@ -37,6 +37,6 @@ app.use(cors())
 app.use('/api/auth', authRouter)
 app.use('/api/posts', postRouter)
 
-const PORT = process.env.PORT || 5000
 
-app.listen(PORT, () => console.log(`server started on port ${PORT}`))
+
+app.listen(process.env.PORT || 8000, '0.0.0.0',  () => () => console.log(`server started on port ${PORT}`))
