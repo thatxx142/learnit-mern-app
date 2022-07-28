@@ -1,7 +1,8 @@
 const express = require('express')
 const router = express.Router()
-const argon2 = require('argon2')
+const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken')
+// const argon2 = require('argon2')
 
 const User = require('../models/User')
 const verifyToker = require('../middleware/auth')
@@ -9,6 +10,8 @@ const verifyToker = require('../middleware/auth')
 //@route POST api/auth/register
 //@desc Register user
 //@access Public
+
+
 
 router.get('/', verifyToker, async(req, res) => {
     try {
@@ -45,7 +48,10 @@ router.post('/register', async(req, res) => {
                 .json({success: false, message: 'Username has been taken'})
 
             // All good
-            const hashedPassword = await argon2.hash(password)
+            // const hashedPassword = await argon2.hash(password)
+            var saltRounds = 10
+            const hashedPassword = bcrypt.hashSync(password,saltRounds)
+
             const newUser = new User({username, password: hashedPassword})
             await newUser.save()
 
@@ -82,12 +88,15 @@ router.post('/login', async(req, res) => {
                     .status(400)
                     .json({success: false, message: 'Incorrect username or password'})
             // Username found
-            const passwordValid = await argon2.verify(user.password, password)
+            // const passwordValid = await argon2.verify(user.password, password)
+            const passwordValid = bcrypt.compare(user.password, password)
+                
             if (!passwordValid)
                 return res
                     .status(400)
                     .json({success: false, message: 'Incorrect username or password'})
-
+            
+            
             // All good
             // Return token
             const accessToken = jwt.sign(
